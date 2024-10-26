@@ -1,15 +1,12 @@
+import HomePage from "./pages/HomePage";
 import "./App.css";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Policy from "./components/Policy";
+import React from "react";
 
 function App() {
   return (
-    <>
-      <Header />
-      <Policy />
-      <Footer />
-    </>
+    <React.Fragment>
+      <HomePage />
+    </React.Fragment>
   );
 }
 
