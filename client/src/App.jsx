@@ -7,6 +7,7 @@ import AuthPage from "./pages/AuthPage";
 import CartPage from "./pages/CartPage";
 
 import BlogDetailPage from "./pages/BlogDetailPage";
+import ProductDetailsPage from "./pages/ProductDetailsPage";
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
       {/* <ContactPage /> */}
       {/* <AuthPage /> */}
       {/* <CartPage /> */}
-      <BlogDetailPage />
+      {/* <BlogDetailPage /> */}
+      <ProductDetailsPage />
     </React.Fragment>
   );
 }
