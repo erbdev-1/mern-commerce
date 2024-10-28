@@ -1,13 +1,13 @@
-import HomePage from "./pages/HomePage";
-import ShopPage from "./pages/ShopPage";
+// import HomePage from "./pages/HomePage";
+// import ShopPage from "./pages/ShopPage";
 import "./App.css";
 import React from "react";
-import ContactPage from "./pages/ContactPage";
-import AuthPage from "./pages/AuthPage";
-import CartPage from "./pages/CartPage";
+// import ContactPage from "./pages/ContactPage";
+// import AuthPage from "./pages/AuthPage";
+// import CartPage from "./pages/CartPage";
 
 import BlogDetailPage from "./pages/BlogDetailPage";
-import ProductDetailsPage from "./pages/ProductDetailsPage";
+// import ProductDetailsPage from "./pages/ProductDetailsPage";
 
 function App() {
   return (
@@ -17,8 +17,8 @@ function App() {
       {/* <ContactPage /> */}
       {/* <AuthPage /> */}
       {/* <CartPage /> */}
-      {/* <BlogDetailPage /> */}
-      <ProductDetailsPage />
+      <BlogDetailPage />
+      {/* <ProductDetailsPage /> */}
     </React.Fragment>
   );
 }
