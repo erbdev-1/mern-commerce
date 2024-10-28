@@ -50,6 +50,10 @@ const Search = ({ isSearchShow, setIsSearchShow }) => {
           onClick={() => setIsSearchShow(false)}
         ></i>
       </div>
+      <div
+        className="modal-overlay"
+        onClick={() => setIsSearchShow(false)}
+      ></div>
     </div>
   );
 };
