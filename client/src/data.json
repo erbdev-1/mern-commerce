@@ -12,7 +12,8 @@
       "thumbs": [
         "img/products/product1/1.png",
         "img/products/product1/2.png",
-        "img/products/product1/3.png"
+        "img/products/product1/3.png",
+        "img/products/product1/1.png"
       ]
     }
   },
@@ -29,7 +30,8 @@
       "thumbs": [
         "img/products/product2/1.png",
         "img/products/product2/2.png",
-        "img/products/product2/3.png"
+        "img/products/product2/3.png",
+        "img/products/product2/2.png"
       ]
     }
   },
@@ -46,7 +48,8 @@
       "thumbs": [
         "img/products/product3/1.png",
         "img/products/product3/2.png",
-        "img/products/product3/3.png"
+        "img/products/product3/3.png",
+        "img/products/product3/2.png"
       ]
     }
   },

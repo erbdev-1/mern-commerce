@@ -62,13 +62,11 @@
   right: 0;
 }
 
-.gallery-thumbs {
+/* .gallery-thumbs {
   display: flex;
   column-gap: 10px;
-}
-.gallery-thumbs img {
-  width: 100px;
-  height: 100px;
+} */
+/* .gallery-thumbs img {
   object-fit: cover;
-  border: 1px solid transparent;
-}
+  border: 2px solid transparent;
+} */
