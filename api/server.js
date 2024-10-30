@@ -17,6 +17,9 @@ const connect = async () => {
   }
 };
 
+//Middlewares
+app.use(express.json());
+
 app.use("/api", mainRoute);
 
 app.listen(PORT, (req, res) => {
