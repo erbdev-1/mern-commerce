@@ -10,14 +10,23 @@ const CartProvider = ({ children }) => {
       : []
   );
 
+  // Save cartItems to localStorage whenever cartItems changes
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
+  // Add to cart function to add items to cart
   const addToCart = (cartItem) => {
-    setCartItems((prevCart) => [...prevCart, cartItem]);
+    setCartItems((prevCart) => [
+      ...prevCart,
+      {
+        ...cartItem,
+        quantity: cartItem.quantity ? cartItem.quantity : 1,
+      },
+    ]);
   };
 
+  // Remove from cart function to remove items from cart by id
   const removeFromCart = (itemId) => {
     const filteredCartItems = cartItems.filter((cartItem) => {
       return cartItem.id !== itemId;

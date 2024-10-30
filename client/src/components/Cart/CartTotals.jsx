@@ -1,4 +1,28 @@
+import { useContext, useState } from "react";
+import { CartContext } from "../context/CartProvider";
+
 const CartTotals = () => {
+  const [fastCargoChecked, setFastCargoChecked] = useState(false);
+  const { cartItems } = useContext(CartContext);
+
+  // Calculate the total price of each item in the cart
+  const cartItemTotal = cartItems.map((item) => {
+    const itemTotal = item.price.newPrice * item.quantity;
+
+    return itemTotal;
+  });
+
+  // Calculate the total price of all items in the cart by adding all the item totals
+  const subTotals = cartItemTotal.reduce((previousValue, currentValue) => {
+    return previousValue + currentValue;
+  }, 0);
+
+  const cargoFee = 10;
+
+  const cartTotals = fastCargoChecked
+    ? (subTotals + cargoFee).toFixed(2)
+    : subTotals.toFixed(2);
+
   return (
     <div className="cart-totals">
       <h2>Cart totals</h2>
@@ -7,7 +31,7 @@ const CartTotals = () => {
           <tr className="cart-subtotal">
             <th>Subtotal</th>
             <td>
-              <span id="subtotal">$316.00</span>
+              <span id="subtotal">£ {subTotals.toFixed(2)}</span>
             </td>
           </tr>
           <tr>
@@ -16,8 +40,13 @@ const CartTotals = () => {
               <ul>
                 <li>
                   <label>
-                    Fast Cargo: $15.00
-                    <input type="checkbox" id="fast-cargo" />
+                    Fast Cargo: £ 10.00
+                    <input
+                      type="checkbox"
+                      id="fast-cargo"
+                      checked={fastCargoChecked}
+                      onChange={() => setFastCargoChecked(!fastCargoChecked)} // Toggle the fastCargoChecked state when the checkbox is clicked
+                    />
                   </label>
                 </li>
                 <li>
@@ -29,7 +58,7 @@ const CartTotals = () => {
           <tr>
             <th>Total</th>
             <td>
-              <strong id="cart-total">$316.00</strong>
+              <strong id="cart-total">£ {cartTotals}</strong>
             </td>
           </tr>
         </tbody>

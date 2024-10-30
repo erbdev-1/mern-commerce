@@ -1,4 +1,4 @@
-// import HomePage from "./pages/HomePage";
+import HomePage from "./pages/HomePage";
 // import ShopPage from "./pages/ShopPage";
 import "./App.css";
 import React from "react";
