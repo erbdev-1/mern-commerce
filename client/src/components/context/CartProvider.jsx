@@ -17,11 +17,20 @@ const CartProvider = ({ children }) => {
   const addToCart = (cartItem) => {
     setCartItems((prevCart) => [...prevCart, cartItem]);
   };
+
+  const removeFromCart = (itemId) => {
+    const filteredCartItems = cartItems.filter((cartItem) => {
+      return cartItem.id !== itemId;
+    });
+    setCartItems(filteredCartItems);
+  };
+
   return (
     <CartContext.Provider
       value={{
         addToCart,
         cartItems,
+        removeFromCart,
       }}
     >
       {children}
