@@ -39,23 +39,21 @@ router.post("/register", async (req, res) => {
     jwt.sign(
       payload,
       process.env.JWT_SECRET,
-      { expiresIn: 3600 },
+      { expiresIn: "1h" },
       (err, token) => {
         if (err) {
           console.error(err.message);
           return res.status(500).json({ msg: "Token generation failed" });
         }
-        res
-          .status(201)
-          .json({
-            token,
-            user: {
-              id: newUser.id,
-              username: newUser.username,
-              email: newUser.email,
-              avatar: newUser.avatar,
-            },
-          });
+        res.status(201).json({
+          token,
+          user: {
+            id: newUser.id,
+            username: newUser.username,
+            email: newUser.email,
+            avatar: newUser.avatar,
+          },
+        });
       }
     );
   } catch (error) {
@@ -85,7 +83,7 @@ router.post("/login", async (req, res) => {
     jwt.sign(
       payload,
       process.env.JWT_SECRET,
-      { expiresIn: 3600 },
+      { expiresIn: "1h" },
       (err, token) => {
         if (err) {
           console.error(err.message);
