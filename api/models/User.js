@@ -21,9 +21,9 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "user",
       enum: ["user", "admin"],
-      avatar: {
-        type: String,
-      },
+    },
+    avatar: {
+      type: String,
     },
   },
   {
