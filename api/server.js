@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const app = express();
+const logger = require("morgan");
 const mainRoute = require("./routes/index");
 const PORT = 5000;
 
@@ -18,6 +19,7 @@ const connect = async () => {
 };
 
 //Middlewares
+app.use(logger("dev"));
 app.use(express.json());
 
 app.use("/api", mainRoute);
