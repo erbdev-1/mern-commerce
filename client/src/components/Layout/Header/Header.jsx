@@ -6,7 +6,7 @@ import "./Header.css";
 
 function Header({ setIsSearchShow }) {
   const { cartItems } = useContext(CartContext);
-
+  const user = localStorage.getItem("user");
   const { pathname } = useLocation();
 
   return (
@@ -221,9 +221,9 @@ function Header({ setIsSearchShow }) {
                 >
                   <i className="bi bi-search"></i>
                 </button>
-                <a href="#">
+                {/* <a href="#">
                   <i className="bi bi-heart"></i>
-                </a>
+                </a> */}
                 <div className="header-cart">
                   <Link to={"/cart"} className="header-cart-link">
                     <i className="bi bi-bag"></i>
@@ -232,6 +232,19 @@ function Header({ setIsSearchShow }) {
                     </span>
                   </Link>
                 </div>
+                {user && (
+                  <button
+                    className="search-button"
+                    onClick={() => {
+                      if (window.confirm("Are you sure you want to logout?")) {
+                        localStorage.removeItem("user");
+                        window.location.href = "/";
+                      }
+                    }}
+                  >
+                    <i className="bi bi-box-arrow-right"></i>
+                  </button>
+                )}
               </div>
             </div>
           </div>
