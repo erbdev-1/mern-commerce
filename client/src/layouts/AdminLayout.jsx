@@ -9,12 +9,28 @@ import {
   ShoppingCartOutlined,
   AppstoreOutlined,
 } from "@ant-design/icons";
+import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
 const { Sider, Header, Content } = Layout;
 
+function getUserRole() {
+  const token = localStorage.getItem("user");
+  if (!token) return null;
+
+  try {
+    const decoded = jwtDecode(token);
+    console.log("Decoded Token:", decoded);
+    return decoded?.user?.role || null;
+  } catch (error) {
+    console.error("Error decoding token:", error);
+    return null;
+  }
+}
+
 const AdminLayout = ({ children }) => {
   const navigate = useNavigate();
+  const userRole = getUserRole();
 
   const menuItems = [
     {
@@ -124,47 +140,54 @@ const AdminLayout = ({ children }) => {
     },
   ];
 
-  return (
-    <Layout
-      style={{
-        minHeight: "100vh",
-      }}
-    >
-      <Sider width={200} theme="dark">
-        <Menu
-          mode="vertical"
+  if (userRole === "admin") {
+    return (
+      <div className="admin-layout">
+        <Layout
           style={{
-            height: "100%",
+            minHeight: "100vh",
           }}
-          items={menuItems}
-        />
-      </Sider>
-      <Layout>
-        <Header>
-          <div
-            style={{
-              color: "white",
-              fontSize: "20px",
-              textAlign: "center",
-            }}
-          >
-            <h2>Admin Dashboard</h2>
-          </div>
-        </Header>
-        <Content>
-          <div
-            className="site-layout-background"
-            style={{
-              padding: "24px 50px",
-              minHeight: 360,
-            }}
-          >
-            {children}
-          </div>
-        </Content>
-      </Layout>
-    </Layout>
-  );
+        >
+          <Sider width={200} theme="dark">
+            <Menu
+              mode="vertical"
+              style={{
+                height: "100%",
+              }}
+              items={menuItems}
+            />
+          </Sider>
+          <Layout>
+            <Header>
+              <div
+                style={{
+                  color: "white",
+                  fontSize: "20px",
+                  textAlign: "center",
+                }}
+              >
+                <h2>Admin Dashboard</h2>
+              </div>
+            </Header>
+            <Content>
+              <div
+                className="site-layout-background"
+                style={{
+                  padding: "24px 50px",
+                  minHeight: 360,
+                }}
+              >
+                {children}
+              </div>
+            </Content>
+          </Layout>
+        </Layout>
+      </div>
+    );
+  } else {
+    window.location.href = "/";
+    return null;
+  }
 };
 export default AdminLayout;
 AdminLayout.propTypes = {

@@ -52,6 +52,7 @@ router.post("/register", async (req, res) => {
             username: newUser.username,
             email: newUser.email,
             avatar: newUser.avatar,
+            role: newUser.role,
           },
         });
       }
@@ -79,7 +80,7 @@ router.post("/login", async (req, res) => {
     }
 
     // We set the payload to the user id and sign the token
-    const payload = { user: { id: user.id } };
+    const payload = { user: { id: user.id, role: user.role } };
     jwt.sign(
       payload,
       process.env.JWT_SECRET,
