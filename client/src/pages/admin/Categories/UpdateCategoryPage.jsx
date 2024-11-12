@@ -1,4 +1,4 @@
-import { Button, Form, Input, message } from "antd";
+import { Button, Form, Input, message, Spin } from "antd";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 const UpdateCategoryPage = () => {
@@ -55,41 +55,43 @@ const UpdateCategoryPage = () => {
     fetchSingleCategory();
   }, [apiUrl, categoryId, form]);
   return (
-    <Form
-      form={form}
-      name="basic"
-      layout="vertical"
-      autoComplete="off"
-      onFinish={onFinish}
-    >
-      <Form.Item
-        label="Category Name"
-        name="name"
-        rules={[
-          {
-            required: true,
-            message: "Please input category name!",
-          },
-        ]}
+    <Spin spinning={loading}>
+      <Form
+        form={form}
+        name="basic"
+        layout="vertical"
+        autoComplete="off"
+        onFinish={onFinish}
       >
-        <Input />
-      </Form.Item>
-      <Form.Item
-        label="Category Image(Link)"
-        name="img"
-        rules={[
-          {
-            required: true,
-            message: "Please input category image link!",
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
-      <Button type="primary" htmlType="submit">
-        Update
-      </Button>
-    </Form>
+        <Form.Item
+          label="Category Name"
+          name="name"
+          rules={[
+            {
+              required: true,
+              message: "Please input category name!",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Category Image(Link)"
+          name="img"
+          rules={[
+            {
+              required: true,
+              message: "Please input category image link!",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Button type="primary" htmlType="submit">
+          Update
+        </Button>
+      </Form>
+    </Spin>
   );
 };
 export default UpdateCategoryPage;
