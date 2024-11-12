@@ -1,5 +1,7 @@
 import { Button, Form, Input, InputNumber, message, Select, Spin } from "antd";
 import { useState } from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const CreateProductPage = () => {
   const [loading, setLoading] = useState(false);
@@ -67,6 +69,23 @@ const CreateProductPage = () => {
           ]}
         >
           <InputNumber />
+        </Form.Item>
+        <Form.Item
+          label="Product Description"
+          name="description"
+          rules={[
+            {
+              required: true,
+              message: "Please input product description!",
+            },
+          ]}
+        >
+          <ReactQuill
+            theme="snow"
+            style={{
+              backgroundColor: "white",
+            }}
+          />
         </Form.Item>
         <Form.Item
           label="Products Image(Links)"
