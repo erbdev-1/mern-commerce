@@ -1,39 +1,88 @@
-import { Table } from "antd";
+import { message, Table } from "antd";
+import { useEffect, useState } from "react";
 
 const AdminUserPage = () => {
-  const dataSource = [
-    {
-      key: "1",
-      name: "Mike",
-      age: 32,
-      address: "10 Downing Street",
-    },
-    {
-      key: "2",
-      name: "John",
-      age: 42,
-      address: "10 Downing Street",
-    },
-  ];
+  const [dataSource, setDataSource] = useState([]);
+
+  const apiUrl = import.meta.env.VITE_API_BASE_URL;
+  console.log("API URL:", apiUrl);
 
   const columns = [
     {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
+      title: "Username",
+      dataIndex: "username",
+      key: "username",
     },
     {
-      title: "Age",
-      dataIndex: "age",
-      key: "age",
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
     },
     {
-      title: "Address",
-      dataIndex: "address",
-      key: "address",
+      title: "Role",
+      dataIndex: "role",
+      key: "role",
+    },
+    {
+      title: "Avatar",
+      dataIndex: "avatar",
+      key: "avatar",
+      render: (imgSrc) => (
+        <img
+          src={imgSrc}
+          alt="avatar"
+          style={{
+            width: "50px",
+            height: "50px",
+            borderRadius: "50%",
+          }}
+        />
+      ),
     },
   ];
-  return <Table dataSource={dataSource} columns={columns} />;
+
+  const fetchUsers = async () => {
+    try {
+      const token = localStorage.getItem("user"); // JWT token
+
+      const fetchUrl = `${apiUrl}/users`;
+      console.log("Fetching URL:", fetchUrl);
+
+      const response = await fetch(fetchUrl, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      const responseText = await response.text();
+      console.log("Response Text:", responseText);
+
+      if (!response.ok) {
+        console.error("Error response:", responseText);
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = JSON.parse(responseText);
+      console.log("Data:", data);
+      setDataSource(data);
+    } catch (error) {
+      console.error("Fetch error:", error.message);
+      message.error("Kullanıcı verileri alınırken hata oluştu.");
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  return (
+    <Table
+      dataSource={dataSource}
+      columns={columns}
+      rowKey={(record) => record._id}
+    />
+  );
 };
 
 export default AdminUserPage;

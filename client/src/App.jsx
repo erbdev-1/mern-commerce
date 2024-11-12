@@ -9,6 +9,8 @@ import ProductDetailsPage from "./pages/ProductDetailsPage";
 import BlogDetailPage from "./pages/BlogDetailPage";
 import "./App.css";
 import AdminUserPage from "./pages/admin/AdminUserPage";
+import CategoryPage from "./pages/Admin/Categories/CategoryPage";
+import UpdateCategoryPage from "./pages/Admin/Categories/UpdateCategoryPage";
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
       <Route path="/blog/:id" element={<BlogDetailPage />} />
       <Route path="/admin/*">
         <Route path="users" element={<AdminUserPage />} />
+        <Route path="categories" element={<CategoryPage />} />
+        <Route path="categories/update/:id" element={<UpdateCategoryPage />} />
       </Route>
     </Routes>
   );
