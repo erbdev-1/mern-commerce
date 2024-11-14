@@ -23,6 +23,12 @@ const CouponPage = () => {
       render: (text) => <span>% {text}</span>,
     },
     {
+      title: "Expiration Date",
+      dataIndex: "expirationDate",
+      key: "expirationDate",
+      render: (text) => <span> {text}</span>,
+    },
+    {
       title: "Actions",
       dataIndex: "actions",
       key: "actions",
