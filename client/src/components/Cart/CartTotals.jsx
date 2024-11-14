@@ -7,7 +7,7 @@ const CartTotals = () => {
 
   // Calculate the total price of each item in the cart
   const cartItemTotal = cartItems.map((item) => {
-    const itemTotal = item.price.newPrice * item.quantity;
+    const itemTotal = item.price.current * item.quantity;
 
     return itemTotal;
   });
