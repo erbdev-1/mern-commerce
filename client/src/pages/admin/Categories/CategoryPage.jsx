@@ -14,7 +14,9 @@ const CategoryPage = () => {
       title: "Category Image",
       dataIndex: "img",
       key: "img",
-      render: (imgSrc) => <img src={imgSrc} alt="Image" width={100} />,
+      render: (imgSrc) => (
+        <img src={imgSrc} alt="Image" width={100} height={100} />
+      ),
     },
     {
       title: "Name",

@@ -14,7 +14,9 @@ const ProductPage = () => {
       title: "Product Image",
       dataIndex: "img",
       key: "img",
-      render: (imgSrc) => <img src={imgSrc[0]} alt="Image" width={100} />,
+      render: (imgSrc) => (
+        <img src={imgSrc[0]} alt="Image" width={100} height={100} />
+      ),
     },
     {
       title: "Name",
